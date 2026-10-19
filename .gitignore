@@ -1,0 +1,69 @@
+==============================
+.NET / Visual Studio
+==============================
+
+**/bin/ **/obj/ **/out/ .vs/ .vscode/ .idea/ *.user *.suo *.userosscache *.sln.docstates
+
+==============================
+Build / Publish
+==============================
+
+[Dd]ebug/ [Rr]elease/ publish/ artifacts/ TestResults/ *.pdb *.cache
+
+==============================
+NuGet
+==============================
+
+*.nupkg *.snupkg .nuget/
+
+Keep NuGet configuration files unless they contain credentials
+NuGet.Config
+==============================
+ASP.NET Core / Secrets
+==============================
+
+appsettings.Local.json appsettings.*.local.json secrets.json
+
+User Secrets are normally stored outside the repository
+Never commit real passwords, tokens, or connection strings
+==============================
+Blazor WebAssembly / PWA
+==============================
+
+**/wwwroot/service-worker-assets.js **/wwwroot/service-worker.js.map **/wwwroot/service-worker.published.js.map
+
+==============================
+Node.js (if used by the frontend)
+==============================
+
+node_modules/ npm-debug.log* yarn-debug.log* pnpm-debug.log*
+
+==============================
+Logs
+==============================
+
+*.log logs/
+
+==============================
+Databases / Local data
+==============================
+
+*.db *.db-shm *.db-wal *.sqlite *.sqlite3
+
+==============================
+Operating systems
+==============================
+
+.DS_Store Thumbs.db Desktop.ini
+
+==============================
+Temporary files
+==============================
+
+*.tmp *.temp *.bak *.swp *.orig
+
+==============================
+Coverage
+==============================
+
+coverage/ coverage.* *.coverage *.coveragexml
