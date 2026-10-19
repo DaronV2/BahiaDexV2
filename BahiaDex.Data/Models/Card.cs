@@ -1,6 +1,7 @@
 public class Card
 {
     public Guid Id { get; set; }
+    public string UniqueIdentifier { get; set; }
     public string Name { get; set; }
     public string? UrlImage { get; set; }
     public Category Category { get; set; }
