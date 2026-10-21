@@ -41,6 +41,7 @@ namespace BahiaDex.Api
         public DbSet<EmplacementCard> EmplacementCard { get; set; }
         public DbSet<Envy> Envy {get; set;}
         public DbSet<HasCard> HasCard{get; set;}
+        public DbSet<User> User{get; set;}
 
 
         private string? connexion;
