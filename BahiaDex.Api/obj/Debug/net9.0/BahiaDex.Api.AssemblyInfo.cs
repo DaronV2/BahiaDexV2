@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BahiaDex.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+83d8eb240d10055c92bc2aff68dd3837f22762f7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+15a50524da3394e8d9fa2f653d4b1ec20aa1b198")]
 [assembly: System.Reflection.AssemblyProductAttribute("BahiaDex.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BahiaDex.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

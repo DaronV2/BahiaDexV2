@@ -952,10 +952,7 @@
         },
         "runtime": {
           "bin/placeholder/BahiaDex.ApiClient.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       }
     }
   },
