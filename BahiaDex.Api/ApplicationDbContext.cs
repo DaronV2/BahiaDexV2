@@ -32,8 +32,10 @@ namespace BahiaDex.Api
         /// Gets or sets the IdentifiantType DbSet, representing the collection of identifier types in the database context, allowing for querying and manipulation of identifier type entities within the application. This DbSet provides access to the underlying database table that stores identifier type information, enabling operations such as adding, updating, and retrieving identifier type records as part of the application's data management functionality.
         /// </summary>
         // public DbSet<Andon> Andon { get; set; }
-
-
+        public DbSet<Card> Card { get; set; }
+        public DbSet<Serie> Serie { get; set; }
+        public DbSet<Set> Set { get; set; }
+        public DbSet<Variant> Variant { get; set; }
 
         private string? connexion;
 
