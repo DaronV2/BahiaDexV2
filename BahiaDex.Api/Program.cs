@@ -16,7 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("BahiadexConnexion"),
-    npgsql => npgsql.MigrationsAssembly("BahiaDex.ApiClient")
+    npgsql => npgsql.MigrationsAssembly("BahiaDex.Api")
 ));
 
 
