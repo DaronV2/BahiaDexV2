@@ -1,5 +1,8 @@
+using System.ComponentModel.DataAnnotations;
+
 public class Card
 {
+    [Key]
     public Guid Id { get; set; }
     public string UniqueIdentifier { get; set; }
     public string Name { get; set; }
