@@ -36,6 +36,12 @@ namespace BahiaDex.Api
         public DbSet<Serie> Serie { get; set; }
         public DbSet<Set> Set { get; set; }
         public DbSet<Variant> Variant { get; set; }
+        public DbSet<Binder> Binder { get; set; }
+        public DbSet<Page> Page { get; set; }
+        public DbSet<EmplacementCard> EmplacementCard { get; set; }
+        public DbSet<Envy> Envy {get; set;}
+        public DbSet<HasCard> HasCard{get; set;}
+
 
         private string? connexion;
 
