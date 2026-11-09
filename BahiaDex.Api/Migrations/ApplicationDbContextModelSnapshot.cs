@@ -22,6 +22,27 @@ namespace BahiaDex.Api.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Binder", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("IdUser")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdUser");
+
+                    b.ToTable("Binder");
+                });
+
             modelBuilder.Entity("Card", b =>
                 {
                     b.Property<Guid>("Id")
@@ -56,6 +77,106 @@ namespace BahiaDex.Api.Migrations
                     b.HasIndex("IdSet");
 
                     b.ToTable("Card");
+                });
+
+            modelBuilder.Entity("EmplacementCard", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IdCard")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IdPage")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("IndexInPage")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid?>("PageId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdCard");
+
+                    b.HasIndex("IdPage");
+
+                    b.HasIndex("PageId");
+
+                    b.ToTable("EmplacementCard");
+                });
+
+            modelBuilder.Entity("Envy", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IdCard")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("IdUser")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdCard");
+
+                    b.HasIndex("IdUser");
+
+                    b.ToTable("Envy");
+                });
+
+            modelBuilder.Entity("HasCard", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IdCard")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("IdUser")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdCard");
+
+                    b.HasIndex("IdUser");
+
+                    b.ToTable("HasCard");
+                });
+
+            modelBuilder.Entity("Page", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("BinderId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Format")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("IdBinder")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("IndexInBinder")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BinderId");
+
+                    b.HasIndex("IdBinder");
+
+                    b.ToTable("Page");
                 });
 
             modelBuilder.Entity("Serie", b =>
@@ -111,6 +232,20 @@ namespace BahiaDex.Api.Migrations
                     b.ToTable("Set");
                 });
 
+            modelBuilder.Entity("User", b =>
+                {
+                    b.Property<string>("IdGoogleAcc")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("IdGoogleAcc");
+
+                    b.ToTable("User");
+                });
+
             modelBuilder.Entity("Variant", b =>
                 {
                     b.Property<Guid>("Id")
@@ -130,6 +265,17 @@ namespace BahiaDex.Api.Migrations
                     b.ToTable("Variant");
                 });
 
+            modelBuilder.Entity("Binder", b =>
+                {
+                    b.HasOne("User", "User")
+                        .WithMany()
+                        .HasForeignKey("IdUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Card", b =>
                 {
                     b.HasOne("Set", "Set")
@@ -139,6 +285,82 @@ namespace BahiaDex.Api.Migrations
                         .IsRequired();
 
                     b.Navigation("Set");
+                });
+
+            modelBuilder.Entity("EmplacementCard", b =>
+                {
+                    b.HasOne("Card", "Card")
+                        .WithMany()
+                        .HasForeignKey("IdCard")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Page", "Page")
+                        .WithMany()
+                        .HasForeignKey("IdPage")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Page", null)
+                        .WithMany("EmplacementCard")
+                        .HasForeignKey("PageId");
+
+                    b.Navigation("Card");
+
+                    b.Navigation("Page");
+                });
+
+            modelBuilder.Entity("Envy", b =>
+                {
+                    b.HasOne("Card", "Card")
+                        .WithMany()
+                        .HasForeignKey("IdCard")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("User", "User")
+                        .WithMany()
+                        .HasForeignKey("IdUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Card");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("HasCard", b =>
+                {
+                    b.HasOne("Card", "Card")
+                        .WithMany()
+                        .HasForeignKey("IdCard")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("User", "User")
+                        .WithMany()
+                        .HasForeignKey("IdUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Card");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Page", b =>
+                {
+                    b.HasOne("Binder", null)
+                        .WithMany("Pages")
+                        .HasForeignKey("BinderId");
+
+                    b.HasOne("Binder", "Binder")
+                        .WithMany()
+                        .HasForeignKey("IdBinder")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Binder");
                 });
 
             modelBuilder.Entity("Set", b =>
@@ -161,6 +383,16 @@ namespace BahiaDex.Api.Migrations
                         .IsRequired();
 
                     b.Navigation("Card");
+                });
+
+            modelBuilder.Entity("Binder", b =>
+                {
+                    b.Navigation("Pages");
+                });
+
+            modelBuilder.Entity("Page", b =>
+                {
+                    b.Navigation("EmplacementCard");
                 });
 #pragma warning restore 612, 618
         }
