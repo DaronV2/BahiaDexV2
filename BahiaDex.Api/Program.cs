@@ -1,4 +1,5 @@
 using BahiaDex.Api;
+using BahiaDex.Api.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,24 +13,31 @@ AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", false);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
+builder.Services.AddOpenApiDocument();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("BahiadexConnexion"),
     npgsql => npgsql.MigrationsAssembly("BahiaDex.Api")
 ));
 
-
-//builder.Services.AddScoped<IAndonService, AndonService>();
-
+builder.Services.AddScoped<IBinderService, BinderService>();
+builder.Services.AddScoped<ICardService, CardService>();
+builder.Services.AddScoped<IEmplacementCardService, EmplacementCardService>();
+builder.Services.AddScoped<IEnvyService, EnvyService>();
+builder.Services.AddScoped<IHasCardService, HasCardService>();
+builder.Services.AddScoped<IPageService, PageService>();
+builder.Services.AddScoped<ISerieService, SerieService>();
+builder.Services.AddScoped<ISetService, SetService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IVariantService, VariantService>();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    //app.UseSwagger();
-    //app.UseSwaggerUI();
+    app.UseOpenApi();
+    app.UseSwaggerUi();
 }
 
 app.UseHttpsRedirection();

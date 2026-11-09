@@ -166,17 +166,3 @@ Desktop.ini
 # ==========================================
 **/GeneratedFiles/
 **/DocOutput/
-
-# ==========================================
-# Projets locaux spécifiques
-# ==========================================
-# Conserver les fichiers sources de :
-# BahiaDex.Api/
-# BahiaDex.WebApp/
-# BahiaDex.ApiClient/
-# ainsi que les .sln, .csproj, fichiers de configuration
-# non sensibles et migrations EF Core.
-
-BahiaDex.Api/obj/*
-BahiaDex.ApiClient/obj/*
-BahiaDex.WebApp/obj/*
