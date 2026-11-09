@@ -10,7 +10,7 @@ namespace BahiaDex.ApiClient.Common
     /// <summary>
     /// The ANDON links.
     /// </summary>
-    public class AndonLinks
+    public class BahiaDexLinks
     {
 
         /// <summary>
