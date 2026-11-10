@@ -7,6 +7,7 @@ namespace BahiaDex.Api.Services
         Task Delete(Guid id);
         Task DeleteRange(List<Card> lst);
         Task<Card> Get(Guid id);
+        Task<List<Card>> GetAll();
         Task<Card> Insert(Card obj);
         Task<List<Card>> InsertRange(List<Card> lst);
         Task<Card> Update(Card obj);
@@ -38,6 +39,11 @@ namespace BahiaDex.Api.Services
         public async Task<Card> Get(Guid id)
         {
             return await _contextDB.Card.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<List<Card>> GetAll()
+        {
+            return await _contextDB.Card.ToListAsync();
         }
 
         public async Task<Card> Insert(Card obj)

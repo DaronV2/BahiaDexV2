@@ -7,6 +7,7 @@ namespace BahiaDex.Api.Services
         Task Delete(string id);
         Task DeleteRange(List<User> lst);
         Task<User> Get(string id);
+        Task<List<User>> GetAll();
         Task<User> Insert(User obj);
         Task<List<User>> InsertRange(List<User> lst);
         Task<User> Update(User obj);
@@ -38,6 +39,11 @@ namespace BahiaDex.Api.Services
         public async Task<User> Get(string id)
         {
             return await _context.User.FirstOrDefaultAsync(x => x.IdGoogleAcc == id);
+        }
+
+        public async Task<List<User>> GetAll()
+        {
+            return await _context.User.ToListAsync();
         }
 
         public async Task<User> Insert(User obj)

@@ -4,7 +4,6 @@
 
 namespace BahiaDex.ApiClient.Common
 {
-    using Newtonsoft.Json;
     using System.IO;
     using System.Net;
     using System.Net.Http.Headers;
@@ -44,7 +43,7 @@ namespace BahiaDex.ApiClient.Common
                 using HttpClient client = CreateClient();
 
                 // Envoi
-                JsonContent content = JsonContent.Create(JsonConvert.SerializeObject(param));
+                JsonContent content = JsonContent.Create(param, options: JsonSerializerOptions);
                 using HttpResponseMessage response = await client.PostAsync(url, content);
                 string jsonResponse = await response.Content.ReadAsStringAsync();
                 return jsonResponse;
@@ -165,13 +164,13 @@ namespace BahiaDex.ApiClient.Common
         {
             HttpClient client = new(SharedHandler, disposeHandler: false)
             {
-                BaseAddress = AndonLinks.BaseUri,
+                BaseAddress = BahiaDexLinks.BaseUri,
                 DefaultRequestVersion = HttpVersion.Version11,
                 DefaultVersionPolicy = HttpVersionPolicy.RequestVersionOrLower,
                 Timeout = TimeSpan.FromMinutes(5),
             };
 
-            string token = bearerToken ?? AndonLinks.GetAuthToken();
+            string token = bearerToken ?? BahiaDexLinks.GetAuthToken();
             if (!string.IsNullOrWhiteSpace(token))
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);

@@ -8,6 +8,7 @@ namespace BahiaDex.ApiClient.Services
         Task<Binder> Get(Guid IdBinder);
         Task<bool> Delete(Guid IdBinder);
         Task<Binder> UpSert(Binder binder);
+        Task<List<Binder>> GetAll();
     }
     public class BinderServiceApi : IBinderServiceApi
     {
@@ -19,6 +20,19 @@ namespace BahiaDex.ApiClient.Services
                 string link = BahiaDexLinks.GetById(BahiaDexLinks.ObjectUri<Binder>(), IdBinder);
                 string response = await Http.HttpGet(link);
                 Binder res = JsonConvert.DeserializeObject<Binder>(response) ?? new();
+                return res;
+            }
+            catch (Exception) { return new(); }
+        }
+
+        public async Task<List<Binder>> GetAll()
+        {
+            try
+            {
+                // Récupération du json
+                string link = BahiaDexLinks.GetAll(BahiaDexLinks.ObjectUri<Binder>());
+                string response = await Http.HttpGet(link);
+                List<Binder> res = JsonConvert.DeserializeObject<List<Binder>>(response) ?? new();
                 return res;
             }
             catch (Exception) { return new(); }

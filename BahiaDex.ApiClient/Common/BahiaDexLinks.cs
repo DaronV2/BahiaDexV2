@@ -69,6 +69,14 @@ namespace BahiaDex.ApiClient.Common
         internal static string GetById(Uri url, Guid? id) => $"{url}{(id == null ? string.Empty : id)}";
 
         /// <summary>
+        /// Get by identifier.
+        /// </summary>
+        /// <param name="url">The uri.</param>
+        /// <param name="id">The id.</param>
+        /// <returns>The link.</returns>
+        internal static string GetAll(Uri url) => $"{url}all";
+
+        /// <summary>
         /// Detele by identifier.
         /// </summary>
         /// <param name="url">The url.</param>

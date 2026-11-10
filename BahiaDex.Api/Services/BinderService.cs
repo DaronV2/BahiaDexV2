@@ -11,6 +11,7 @@ namespace BahiaDex.Api.Services
         Task<List<Binder>> InsertRange(List<Binder> lst);
         Task<Binder> Update(Binder obj);
         Task<List<Binder>> UpdateRange(List<Binder> lst);
+        Task<List<Binder>> GetAll();
     }
 
     public class BinderService : IBinderService
@@ -38,6 +39,11 @@ namespace BahiaDex.Api.Services
         public async Task<Binder> Get(Guid id)
         {
             return await _contextDB.Binder.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<List<Binder>> GetAll()
+        {
+            return await _contextDB.Binder.ToListAsync();
         }
 
         public async Task<Binder> Insert(Binder obj)

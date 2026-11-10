@@ -7,6 +7,7 @@ namespace BahiaDex.Api.Services
         Task Delete(Guid id);
         Task DeleteRange(List<Variant> lst);
         Task<Variant> Get(Guid id);
+        Task<List<Variant>> GetAll();
         Task<Variant> Insert(Variant obj);
         Task<List<Variant>> InsertRange(List<Variant> lst);
         Task<Variant> Update(Variant obj);
@@ -38,6 +39,11 @@ namespace BahiaDex.Api.Services
         public async Task<Variant> Get(Guid id)
         {
             return await _context.Variant.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<List<Variant>> GetAll()
+        {
+            return await _context.Variant.ToListAsync();
         }
 
         public async Task<Variant> Insert(Variant obj)

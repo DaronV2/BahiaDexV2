@@ -7,6 +7,7 @@ namespace BahiaDex.Api.Services
         Task Delete(Guid id);
         Task DeleteRange(List<EmplacementCard> lst);
         Task<EmplacementCard> Get(Guid id);
+        Task<List<EmplacementCard>> GetAll();
         Task<EmplacementCard> Insert(EmplacementCard obj);
         Task<List<EmplacementCard>> InsertRange(List<EmplacementCard> lst);
         Task<EmplacementCard> Update(EmplacementCard obj);
@@ -38,6 +39,11 @@ namespace BahiaDex.Api.Services
         public async Task<EmplacementCard> Get(Guid id)
         {
             return await _context.EmplacementCard.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<List<EmplacementCard>> GetAll()
+        {
+            return await _context.EmplacementCard.ToListAsync();
         }
 
         public async Task<EmplacementCard> Insert(EmplacementCard obj)

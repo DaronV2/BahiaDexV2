@@ -19,6 +19,13 @@ namespace BahiaDex.Api.Controller
               return res;
           }
 
+          [HttpGet("all")]
+          public async Task<ActionResult<List<User>>> GetAll()
+          {
+              var res = await _service.GetAll();
+              return res;
+          }
+
           [HttpPost()]
           public async Task<ActionResult<User>> UpSert(User obj)
           {

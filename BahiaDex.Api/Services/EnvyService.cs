@@ -7,6 +7,7 @@ namespace BahiaDex.Api.Services
         Task Delete(Guid id);
         Task DeleteRange(List<Envy> lst);
         Task<Envy> Get(Guid id);
+        Task<List<Envy>> GetAll();
         Task<Envy> Insert(Envy obj);
         Task<List<Envy>> InsertRange(List<Envy> lst);
         Task<Envy> Update(Envy obj);
@@ -38,6 +39,11 @@ namespace BahiaDex.Api.Services
         public async Task<Envy> Get(Guid id)
         {
             return await _context.Envy.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<List<Envy>> GetAll()
+        {
+            return await _context.Envy.ToListAsync();
         }
 
         public async Task<Envy> Insert(Envy obj)
