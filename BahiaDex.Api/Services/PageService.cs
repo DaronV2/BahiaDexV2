@@ -1,3 +1,4 @@
+using BahiaDex.ApiClient.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace BahiaDex.Api.Services

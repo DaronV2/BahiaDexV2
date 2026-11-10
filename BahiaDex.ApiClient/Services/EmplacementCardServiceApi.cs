@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using BahiaDex.ApiClient.Common;
+using BahiaDex.ApiClient.Models;
 
 namespace BahiaDex.ApiClient.Services
 {

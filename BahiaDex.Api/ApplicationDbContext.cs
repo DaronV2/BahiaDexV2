@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System.Collections;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
+using BahiaDex.ApiClient.Models;
 
 namespace BahiaDex.Api
 {
@@ -36,7 +37,7 @@ namespace BahiaDex.Api
         public DbSet<Serie> Serie { get; set; }
         public DbSet<Set> Set { get; set; }
         public DbSet<Variant> Variant { get; set; }
-        public DbSet<Binder> Binder { get; set; }
+        public DbSet<BahiaDex.ApiClient.Models.Binder> Binder { get; set; }
         public DbSet<Page> Page { get; set; }
         public DbSet<EmplacementCard> EmplacementCard { get; set; }
         public DbSet<Envy> Envy {get; set;}
