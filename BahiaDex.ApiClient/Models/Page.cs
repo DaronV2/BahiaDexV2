@@ -1,5 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 
+namespace BahiaDex.ApiClient.Models;
+
 public class Page
 {
     [Key]
